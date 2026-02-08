@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
+import bgImage from "../../assets/images/bg.png";
 
 const HeroSection = () => {
     const navigate = useNavigate();
@@ -9,11 +10,14 @@ const HeroSection = () => {
     };
 
     return (
-        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center text-center pt-20 pb-32 px-4">
-            {/* Background Placeholder */}
-            <div className="absolute inset-0 -z-10 bg-background" />
+        <section className="relative w-full min-h-[100vh] flex flex-col items-center justify-center text-center pt-20 pb-32 px-4">
+            {/* Background Image */}
+            <div
+                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url(${bgImage})` }}
+            />
 
-            <div className="z-10 max-w-4xl w-full space-y-6 animate-fade-in-up flex flex-col items-center">
+            <div className="relative z-10 max-w-4xl w-full space-y-6 animate-fade-in-up flex flex-col items-center">
                 <h1 className="text-5xl md:text-7xl font-heading font-normal tracking-wide text-foreground drop-shadow-md">
                     Find Clarity in Your <br />
                     Future
