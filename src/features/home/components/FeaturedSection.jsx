@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Calendar, UserPlus, Sun } from "lucide-react";
-import relationshipBg from "../../assets/images/relationShipBg.png";
+import relationshipBg from "../../../assets/images/relationShipBg.png";
 
 export function FeaturedSection() {
     const navigate = useNavigate();

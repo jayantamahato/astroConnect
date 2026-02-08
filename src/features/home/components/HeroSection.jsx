@@ -1,14 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
-import bgImage from "../../assets/images/bg.png";
+import bgImage from "../../../assets/images/bg.png";
 
 const HeroSection = () => {
-    const navigate = useNavigate();
-
-    const handleSearch = (e) => {
-        // Implement search functionality here
-    };
-
     return (
         <section className="relative w-full min-h-[100vh] flex flex-col items-center justify-center text-center pt-20 pb-32 px-4">
             {/* Background Image */}

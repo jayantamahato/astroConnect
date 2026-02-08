@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Flame, Droplet, Sun, Moon, Leaf, Cloud, Scale, VenetianMask, Zap, Anchor, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
 
 // Using Lucide icons as placeholders for Zodiac symbols
 const DAILY_HOROSCOPES = [
@@ -85,10 +84,9 @@ export function HoroscopeSection() {
                         className="relative w-full overflow-x-auto pb-12 pt-8 px-4 md:px-12 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] flex gap-6 scroll-smooth snap-x snap-mandatory"
                     >
                         {DAILY_HOROSCOPES.map((sign) => (
-                            <motion.div
+                            <div
                                 key={sign.name}
-                                whileHover={{ y: -10 }}
-                                className="snap-center min-w-[170px] md:min-w-[190px] h-60 rounded-3xl bg-card border border-border hover:border-primary hover:shadow-[0_0_30px_rgba(255,140,0,0.1)] transition-all duration-300 cursor-pointer flex flex-col items-center justify-center gap-5 group relative shadow-sm"
+                                className="snap-center min-w-[170px] md:min-w-[190px] h-60 rounded-3xl bg-card border border-border hover:border-primary hover:shadow-[0_0_30px_rgba(255,140,0,0.1)] transition-all duration-300 hover:-translate-y-2 cursor-pointer flex flex-col items-center justify-center gap-5 group relative shadow-sm"
                             >
                                 {/* Icon Circle */}
                                 <div className="w-14 h-14 rounded-full bg-muted border border-border flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -103,7 +101,7 @@ export function HoroscopeSection() {
                                         {sign.dates}
                                     </span>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>

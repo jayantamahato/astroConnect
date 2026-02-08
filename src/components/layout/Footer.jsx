@@ -1,8 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
-    const navigate = useNavigate();
+    const companyLinks = [
+        { label: 'About Us', path: '/about' },
+        { label: 'Contact Us', path: '/contact' },
+        { label: 'Privacy Policy', path: '/privacy' },
+        { label: 'Terms of Service', path: '/terms' }
+    ];
 
     return (
         <footer className="bg-white dark:bg-card border-t border-zinc-100 dark:border-white/5 pt-20 pb-10 relative z-10 text-zinc-600 dark:text-zinc-400 w-full font-sans transition-colors duration-300">
@@ -48,11 +53,18 @@ export function Footer() {
                             Resources
                         </h3>
                         <ul className="space-y-4 text-sm">
-                            {['Daily Horoscope', 'Kundli Matching', 'Panchang', 'Astrology Blog'].map(item => (
-                                <li key={item} className="hover:text-primary transition-colors cursor-pointer w-fit">
-                                    {item}
-                                </li>
-                            ))}
+                            <li className="hover:text-primary transition-colors w-fit">
+                                <Link to="/">Daily Horoscope</Link>
+                            </li>
+                            <li className="hover:text-primary transition-colors w-fit">
+                                <Link to="/">Kundli Matching</Link>
+                            </li>
+                            <li className="hover:text-primary transition-colors w-fit">
+                                <Link to="/">Panchang</Link>
+                            </li>
+                            <li className="hover:text-primary transition-colors w-fit">
+                                <Link to="/blog">Astrology Blog</Link>
+                            </li>
                         </ul>
                     </div>
 
@@ -61,9 +73,9 @@ export function Footer() {
                             Company
                         </h3>
                         <ul className="space-y-4 text-sm">
-                            {['About Us', 'Contact Us', 'Privacy Policy', 'Terms of Service'].map(item => (
-                                <li key={item} className="hover:text-primary transition-colors cursor-pointer w-fit">
-                                    {item}
+                            {companyLinks.map(item => (
+                                <li key={item.label} className="hover:text-primary transition-colors w-fit">
+                                    <Link to={item.path}>{item.label}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -74,8 +86,8 @@ export function Footer() {
                 <div className="border-t border-zinc-200 dark:border-white/5 pt-8 text-center text-xs text-zinc-500 dark:text-zinc-500 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p>&copy; {new Date().getFullYear()} AstroConnect. All rights reserved.</p>
                     <div className="flex gap-8">
-                        <span className="cursor-pointer hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</span>
-                        <span className="cursor-pointer hover:text-zinc-900 dark:hover:text-white transition-colors">Terms of Service</span>
+                        <Link to="/privacy" className="cursor-pointer hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="/terms" className="cursor-pointer hover:text-zinc-900 dark:hover:text-white transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>
@@ -84,3 +96,4 @@ export function Footer() {
 };
 
 export default Footer;
+

@@ -12,7 +12,7 @@ export const store = configureStore({
         getDefaultMiddleware({
             serializableCheck: false, // Useful if dealing with non-serializable data (like complex objects)
         }),
-    devTools: process.env.NODE_ENV !== 'production', // Enable DevTools only in dev
+    devTools: import.meta.env.DEV, // Enable DevTools only in dev
 });
 
 export default store;

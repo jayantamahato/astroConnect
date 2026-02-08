@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isLoginOpen: false,
-    loginStep: 'phone', // 'phone' | 'otp'
+    loginStep: 'phone', // 'phone' | 'otp' | 'register'
     phoneNumber: '',
     verificationId: null,
     isAuthenticated: false,
     user: null,
     isLoading: false,
     error: null,
+    isNewUser: true, // For demo, assume new user. In production, API will determine this.
 };
 
 const authSlice = createSlice({
@@ -33,6 +34,9 @@ const authSlice = createSlice({
         setPhoneNumber: (state, action) => {
             state.phoneNumber = action.payload;
         },
+        setIsNewUser: (state, action) => {
+            state.isNewUser = action.payload;
+        },
         loginStart: (state) => {
             state.isLoading = true;
             state.error = null;
@@ -42,6 +46,7 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
             state.user = action.payload;
             state.isLoginOpen = false; // Close modal on success
+            state.loginStep = 'phone'; // Reset step
         },
         loginFailure: (state, action) => {
             state.isLoading = false;
@@ -59,6 +64,7 @@ export const {
     closeLogin,
     setLoginStep,
     setPhoneNumber,
+    setIsNewUser,
     loginStart,
     loginSuccess,
     loginFailure,
