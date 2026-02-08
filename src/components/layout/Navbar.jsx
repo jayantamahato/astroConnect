@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectTheme, toggleTheme } from '../../features/theme/themeSlice';
+import { openLogin } from '../../features/auth/authSlice';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +63,9 @@ const Navbar = () => {
                         >
                             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
-                        <button className="bg-primary text-primary-foreground px-8 py-2 rounded-full font-bold hover:bg-opacity-90 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        <button
+                            onClick={() => dispatch(openLogin())}
+                            className="bg-primary text-primary-foreground px-8 py-2 rounded-full font-bold hover:bg-opacity-90 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
                             Login
                         </button>
                     </div>
@@ -109,7 +112,9 @@ const Navbar = () => {
                                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                             </button>
                         </div>
-                        <button className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all">
+                        <button
+                            onClick={() => dispatch(openLogin())}
+                            className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all">
                             Login
                         </button>
                     </div>

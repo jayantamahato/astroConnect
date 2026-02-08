@@ -5,7 +5,7 @@ export function Footer() {
     const navigate = useNavigate();
 
     return (
-        <footer className="bg-white dark:bg-[#12100E] border-t border-zinc-100 dark:border-white/5 pt-20 pb-10 relative z-10 text-zinc-600 dark:text-zinc-400 w-full font-sans transition-colors duration-300">
+        <footer className="bg-white dark:bg-card border-t border-zinc-100 dark:border-white/5 pt-20 pb-10 relative z-10 text-zinc-600 dark:text-zinc-400 w-full font-sans transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
 
@@ -22,7 +22,7 @@ export function Footer() {
                         </p>
                         <div className="flex gap-4">
                             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
-                                <button key={idx} className="p-2 rounded-full bg-zinc-100 dark:bg-[#1e1a15] hover:bg-primary text-zinc-500 hover:text-black transition-all border border-zinc-200 dark:border-white/5 shadow-sm">
+                                <button key={idx} className="p-2 rounded-full bg-zinc-100 dark:bg-background hover:bg-primary text-zinc-500 hover:text-black transition-all border border-zinc-200 dark:border-white/5 shadow-sm">
                                     <Icon className="w-4 h-4" />
                                 </button>
                             ))}

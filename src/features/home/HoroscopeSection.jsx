@@ -38,7 +38,7 @@ export function HoroscopeSection() {
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-heading font-normal text-zinc-900 dark:text-white drop-shadow-sm">
+                        <h2 className="text-4xl md:text-5xl font-heading font-normal drop-shadow-sm">
                             Daily Horoscope
                         </h2>
                         <p className="text-muted-foreground mt-2 text-lg">

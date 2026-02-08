@@ -48,7 +48,7 @@ export function AstrologerList() {
             {/* Header & Filters */}
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="text-center md:text-left">
-                    <h2 className="text-4xl md:text-5xl font-heading font-normal text-zinc-900 dark:text-white">
+                    <h2 className="text-4xl md:text-5xl font-heading font-normal ">
                         Expert Astrologers
                     </h2>
                     <p className="text-zinc-500 dark:text-zinc-400 mt-2">
@@ -62,7 +62,7 @@ export function AstrologerList() {
                             key={filter}
                             className={`px-5 py-2 rounded-full font-medium text-sm transition-all whitespace-nowrap border ${filter === "All"
                                 ? "bg-primary border-primary text-black font-bold"
-                                : "bg-white dark:bg-[#27221b] border-zinc-200 dark:border-white/5 text-zinc-600 dark:text-zinc-400 hover:border-primary hover:text-primary"
+                                : "bg-white dark:bg-card border-zinc-200 dark:border-white/5 text-zinc-600 dark:text-zinc-400 hover:border-primary hover:text-primary"
                                 }`}
                         >
                             {filter}
@@ -76,7 +76,8 @@ export function AstrologerList() {
                 {EXPERT_ASTROLOGERS.map((astro, index) => (
                     <div
                         key={index}
-                        className="bg-white dark:bg-[#27221b] border border-zinc-200 dark:border-white/5 p-5 rounded-2xl flex flex-col gap-4 hover:shadow-xl hover:shadow-primary/5 transition-all group relative cursor-pointer"
+                        onClick={() => navigate('/astrologer/1')}
+                        className="bg-white dark:bg-card border border-zinc-200 dark:border-white/5 p-5 rounded-2xl flex flex-col gap-4 hover:shadow-xl hover:shadow-primary/5 transition-all group relative cursor-pointer"
                     >
                         <div className="flex gap-4">
                             {/* Avatar */}
@@ -119,7 +120,7 @@ export function AstrologerList() {
                                     <button className="w-10 h-10 rounded-full border border-green-500/30 text-green-500 flex items-center justify-center hover:bg-green-500 hover:text-white transition-colors">
                                         <Phone className="w-4 h-4" />
                                     </button>
-                                    <button className="px-6 py-2 rounded-full border border-primary text-primary font-medium text-sm hover:bg-primary hover:text-black transition-colors">
+                                    <button className="px-6 py-2 rounded-full border border-primary text-primary font-medium text-sm hover:bg-primary hover:text-white transition-colors">
                                         Chat
                                     </button>
                                 </div>

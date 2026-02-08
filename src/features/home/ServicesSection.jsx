@@ -43,7 +43,7 @@ const ServicesSection = () => {
                         <div
                             key={service.title}
                             onClick={() => navigate(service.path)}
-                            className="group relative bg-white dark:bg-[#27221b] p-6 rounded-2xl border border-zinc-200 dark:border-white/5 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:-translate-y-1 shadow-md shadow-zinc-200/50 dark:shadow-black/20 hover:shadow-xl hover:shadow-primary/5"
+                            className="group relative bg-white dark:bg-card p-6 rounded-2xl border border-zinc-200 dark:border-white/5 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:-translate-y-1 shadow-md shadow-zinc-200/50 dark:shadow-black/20 hover:shadow-xl hover:shadow-primary/5"
                         >
                             <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <ArrowUpRight className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-hover:text-primary" />
@@ -53,11 +53,11 @@ const ServicesSection = () => {
                                 <service.icon className={`w-7 h-7 ${service.color}`} strokeWidth={1.5} />
                             </div>
 
-                            <h3 className="text-xl font-heading font-bold text-zinc-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                            <h3 className="text-xl font-heading font-bold mb-2 group-hover:text-primary transition-colors">
                                 {service.title}
                             </h3>
 
-                            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                            <p className="text-sm text-muted-foreground leading-relaxed">
                                 {service.description}
                             </p>
                         </div>

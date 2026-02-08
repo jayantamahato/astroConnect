@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from '../features/theme/themeSlice';
-// Future features can be added here
-// import counterReducer from '../features/counter/counterSlice';
+import authReducer from '../features/auth/authSlice';
 
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
-        // counter: counterReducer,
+        auth: authReducer,
     },
     // Customize middleware if needed
     middleware: (getDefaultMiddleware) =>

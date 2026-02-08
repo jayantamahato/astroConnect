@@ -13,17 +13,17 @@ const HeroSection = () => {
         <section className="relative w-full min-h-[100vh] flex flex-col items-center justify-center text-center pt-20 pb-32 px-4">
             {/* Background Image */}
             <div
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat brightness-50"
                 style={{ backgroundImage: `url(${bgImage})` }}
             />
 
             <div className="relative z-10 max-w-4xl w-full space-y-6 animate-fade-in-up flex flex-col items-center">
-                <h1 className="text-5xl md:text-7xl font-heading font-normal tracking-wide text-foreground drop-shadow-md">
+                <h1 className="text-5xl md:text-7xl font-heading font-normal tracking-wide text-white drop-shadow-md">
                     Find Clarity in Your <br />
                     Future
                 </h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-sans mt-4">
+                <p className="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed font-sans mt-4">
                     Consult India's Top Astrologers for Vedic Astrology, Tarot, and
                     Numerology. Get Instant guidance today.
                 </p>
