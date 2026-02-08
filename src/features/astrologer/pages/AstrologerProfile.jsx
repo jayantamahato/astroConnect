@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../../components/layout/Navbar';
 import Footer from '../../../components/layout/Footer';
+import ChatEstablishmentDialog from '../../../components/dialogs/ChatEstablishmentDialog';
 import {
     AstrologerProfileHeader,
     AboutSection,
@@ -14,6 +15,8 @@ import {
 
 const AstrologerProfile = () => {
     const navigate = useNavigate();
+    const [isChatDialogOpen, setIsChatDialogOpen] = useState(false);
+    const userBalance = 500; // Mock user balance
 
     // Mock Data
     const astrologer = {
@@ -67,6 +70,15 @@ const AstrologerProfile = () => {
         ]
     };
 
+    const handleStartChat = () => {
+        setIsChatDialogOpen(true);
+    };
+
+    const handleConnectChat = () => {
+        setIsChatDialogOpen(false);
+        navigate(`/chat/1`); // Redirect to chat page
+    };
+
     return (
         <div className="min-h-screen bg-background text-foreground font-sans">
             <Navbar />
@@ -97,7 +109,11 @@ const AstrologerProfile = () => {
                     {/* Right Column - Sidebar */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-24 space-y-6">
-                            <ConnectCard pricing={astrologer.pricing} isOnline={astrologer.isOnline} />
+                            <ConnectCard
+                                pricing={astrologer.pricing}
+                                isOnline={astrologer.isOnline}
+                                onChat={handleStartChat}
+                            />
                             <OfferCard
                                 title="Get 50% OFF on your first consultation!"
                                 code="FIRST50"
@@ -108,6 +124,14 @@ const AstrologerProfile = () => {
             </main>
 
             <Footer />
+
+            <ChatEstablishmentDialog
+                isOpen={isChatDialogOpen}
+                onClose={() => setIsChatDialogOpen(false)}
+                astrologer={astrologer}
+                userBalance={userBalance}
+                onConnect={handleConnectChat}
+            />
         </div>
     );
 };

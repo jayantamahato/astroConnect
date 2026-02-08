@@ -18,6 +18,7 @@ import LogoutDialog from '../../../components/dialogs/LogoutDialog';
 import HelpSupportDialog from '../../../components/dialogs/HelpSupportDialog';
 import FavoriteAstrologersDrawer from '../../../components/drawers/FavoriteAstrologersDrawer';
 import NotificationsDrawer from '../../../components/drawers/NotificationsDrawer';
+import EditProfileDialog from '../../../components/dialogs/EditProfileDialog';
 import {
     ProfileCard,
     ProfileMenu,
@@ -37,6 +38,7 @@ const UserProfilePage = () => {
     const [isHelpDialogOpen, setIsHelpDialogOpen] = useState(false);
     const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState(false);
     const [isNotificationsDrawerOpen, setIsNotificationsDrawerOpen] = useState(false);
+    const [isEditProfileDialogOpen, setIsEditProfileDialogOpen] = useState(false);
 
     // Mock user data (in production, this would come from the user state)
     const userData = {
@@ -112,6 +114,16 @@ const UserProfilePage = () => {
         navigate('/');
     };
 
+    const handleEditProfile = () => {
+        setIsEditProfileDialogOpen(true);
+    };
+
+    const handleSaveProfile = (updatedData) => {
+        console.log("Saving profile data:", updatedData);
+        // In a real app, you would dispatch an action to update user profile here
+        setIsEditProfileDialogOpen(false);
+    };
+
     const getInitials = (name) => {
         return name
             .split(' ')
@@ -136,7 +148,11 @@ const UserProfilePage = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left Column - Profile Summary & Menu */}
                     <div className="lg:col-span-1 space-y-6">
-                        <ProfileCard userData={userData} getInitials={getInitials} />
+                        <ProfileCard
+                            userData={userData}
+                            getInitials={getInitials}
+                            onEdit={handleEditProfile}
+                        />
                         <ProfileMenu menuItems={menuItems} onLogout={openLogoutDialog} />
                     </div>
 
@@ -250,6 +266,13 @@ const UserProfilePage = () => {
             <NotificationsDrawer
                 isOpen={isNotificationsDrawerOpen}
                 onClose={() => setIsNotificationsDrawerOpen(false)}
+            />
+
+            <EditProfileDialog
+                isOpen={isEditProfileDialogOpen}
+                onClose={() => setIsEditProfileDialogOpen(false)}
+                userData={userData}
+                onSave={handleSaveProfile}
             />
         </div>
     );

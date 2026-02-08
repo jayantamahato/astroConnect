@@ -3,7 +3,7 @@ import { Camera, Edit3 } from 'lucide-react';
 /**
  * ProfileCard - Displays user profile summary with avatar, name, and stats
  */
-const ProfileCard = ({ userData, getInitials }) => {
+const ProfileCard = ({ userData, getInitials, onEdit }) => {
     return (
         <div className="bg-card rounded-3xl p-6 shadow-sm border border-border relative overflow-hidden">
             {/* Decorative Background */}
@@ -27,7 +27,10 @@ const ProfileCard = ({ userData, getInitials }) => {
                             </div>
                         )}
                     </div>
-                    <button className="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-colors">
+                    <button
+                        onClick={onEdit}
+                        className="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-colors"
+                    >
                         <Camera className="w-4 h-4" />
                     </button>
                 </div>
@@ -37,7 +40,10 @@ const ProfileCard = ({ userData, getInitials }) => {
                     <span>☉</span> {userData.zodiacSign}
                 </p>
 
-                <button className="mt-4 px-6 py-2 bg-muted/50 border border-border rounded-full text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2">
+                <button
+                    onClick={onEdit}
+                    className="mt-4 px-6 py-2 bg-muted/50 border border-border rounded-full text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2"
+                >
                     <Edit3 className="w-4 h-4" />
                     Edit Profile
                 </button>

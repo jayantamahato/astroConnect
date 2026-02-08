@@ -3,7 +3,7 @@ import { MessageCircle, Phone, ChevronRight, Lock, ShieldCheck } from 'lucide-re
 /**
  * ConnectCard - Sidebar card with chat/call buttons and pricing
  */
-const ConnectCard = ({ pricing, isOnline = true }) => {
+const ConnectCard = ({ pricing, isOnline = true, onChat }) => {
     return (
         <div className="bg-card rounded-2xl p-6 shadow-lg border border-primary/20">
             <div className="flex justify-between items-center mb-6">
@@ -29,7 +29,10 @@ const ConnectCard = ({ pricing, isOnline = true }) => {
                             <span className="text-primary font-bold">₹{pricing.chat.discounted}<span className="text-xs font-normal text-muted-foreground">/min</span></span>
                         </div>
                     </div>
-                    <button className="w-full py-3 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold rounded-xl transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-md flex items-center justify-center gap-2">
+                    <button
+                        onClick={onChat}
+                        className="w-full py-3 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold rounded-xl transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-md flex items-center justify-center gap-2"
+                    >
                         Start Chat
                         <ChevronRight className="w-4 h-4 opacity-50" />
                     </button>
