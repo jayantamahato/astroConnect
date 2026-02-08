@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* 
+  FONT SETUP
+  Place your font files in src/assets/fonts/ and update the filenames below if necessary.
+*/
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EagleLake';
+  src: url('./assets/fonts/Eagle_Lake/EagleLake-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@theme {
+  /* Font Family Mappings */
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "EagleLake", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Color Variables */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* New Status Colors */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* 
+  THEME VARIABLES 
+  Updated with user-provided palette.
+*/
+@layer base {
+  :root {
+    /* LIGHT THEME */
+    --background: #F8F9FA;
+    --foreground: #1e1a15;
+
+    --card: #FFFFFF;
+    --card-foreground: #1e1a15;
+
+    --primary: #FF8C00;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #FFD700;
+    --secondary-foreground: #1e1a15;
+
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
+
+    --accent: #f3f4f6;
+    --accent-foreground: #111827;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #e5e7eb;
+    --input: #e5e7eb;
+    --ring: #FF8C00;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* DARK THEME */
+    --background: #181511;
+    --foreground: #FAFAFA;
+
+    --card: #27221b;
+    --card-foreground: #FAFAFA;
+
+    --primary: #FF8C00;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #FFD700;
+    --secondary-foreground: #1e1a15;
+
+    --muted: #2d261e;
+    --muted-foreground: #a1a1aa;
+
+    --accent: #2d261e;
+    --accent-foreground: #FAFAFA;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #FFFFFF;
+
+    --border: rgba(255, 255, 255, 0.1);
+    --input: rgba(255, 255, 255, 0.1);
+    --ring: #FF8C00;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold;
+  }
+}
