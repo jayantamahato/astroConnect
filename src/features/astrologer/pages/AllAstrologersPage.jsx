@@ -2,29 +2,26 @@ import { useState } from 'react';
 import Navbar from '../../../components/layout/Navbar';
 import Footer from '../../../components/layout/Footer';
 import SeoMeta from '../../../components/seo/SeoMeta';
+import { useConnection } from '../../../components/ConnectionProvider';
 import {
     AstrologerFilters,
     PromotionalBanner,
     AstrologerGrid
 } from '../components';
 
-const mockAstrologers = Array(12).fill(null).map((_, i) => ({
-    name: i % 2 === 0 ? "Pandit Sharma" : "Tarot Priya",
-    experience: `${5 + i} Years Exp.`,
-    skills: i % 2 === 0 ? "Vedic, Numerology" : "Tarot, Psychic",
-    rating: (4.0 + (i % 10) / 10).toFixed(1),
-    price: `₹${20 + i}/min`,
-    image: `https://i.pravatar.cc/150?u=${i}`,
-    status: i % 3 === 0 ? "busy" : "online",
-}));
+import { ALL_ASTROLOGERS as mockAstrologers } from '../../../constants/astrologers';
 
 const AllAstrologersPage = () => {
+    const { startChat, startCall } = useConnection();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedFilter, setSelectedFilter] = useState('All');
     const [sortBy] = useState('Recommended');
     const [priceRange, setPriceRange] = useState(500);
     const [experienceRange, setExperienceRange] = useState(0);
     const [isAvailable, setIsAvailable] = useState(false);
+
+    const handleChatClick = (astro) => startChat(astro);
+    const handleCallClick = (astro) => startCall(astro);
 
     const sortedFilteredAstrologers = mockAstrologers
         .filter(astro => {
@@ -70,7 +67,6 @@ const AllAstrologersPage = () => {
 
             <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Left Sidebar - Filters */}
                     <AstrologerFilters
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
@@ -85,11 +81,9 @@ const AllAstrologersPage = () => {
                         onReset={handleResetFilters}
                     />
 
-                    {/* Main Content */}
                     <main className="flex-1 min-w-0">
                         <PromotionalBanner />
 
-                        {/* Sorting & Count Header */}
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 pt-2">
                             <div>
                                 <h1 className="text-2xl font-heading font-bold text-foreground">Talk to Astrologer</h1>
@@ -102,6 +96,8 @@ const AllAstrologersPage = () => {
                         <AstrologerGrid
                             astrologers={sortedFilteredAstrologers}
                             onClearFilters={handleResetFilters}
+                            onChat={handleChatClick}
+                            onCall={handleCallClick}
                         />
                     </main>
                 </div>

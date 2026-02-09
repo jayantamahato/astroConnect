@@ -80,6 +80,7 @@ const Navbar = () => {
             path: '/services',
             dropdown: [
                 { name: 'Horoscope', path: '/services/horoscope' },
+                { name: 'Free Kundali', path: '/services/kundali' },
                 { name: 'Kundali Matching', path: '/services/kundali-matching' },
                 { name: 'Numerology', path: '/services/numerology' },
                 { name: 'Tarot Reading', path: '/services/tarot' },

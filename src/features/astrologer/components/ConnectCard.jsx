@@ -3,16 +3,23 @@ import { MessageCircle, Phone, ChevronRight, Lock, ShieldCheck } from 'lucide-re
 /**
  * ConnectCard - Sidebar card with chat/call buttons and pricing
  */
-const ConnectCard = ({ pricing, isOnline = true, onChat }) => {
+const ConnectCard = ({ pricing, isOnline = true, isBusy = false, onChat, onCall }) => {
     return (
         <div className="bg-card rounded-2xl p-6 shadow-lg border border-primary/20">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-heading font-bold">Connect Now</h2>
                 {isOnline && (
-                    <span className="flex items-center text-xs font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded-full animate-pulse">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-1.5"></span>
-                        Available
-                    </span>
+                    isBusy ? (
+                        <span className="flex items-center text-xs font-bold text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full">
+                            <span className="w-2 h-2 bg-amber-500 rounded-full mr-1.5 ring-4 ring-amber-500/20"></span>
+                            Busy
+                        </span>
+                    ) : (
+                        <span className="flex items-center text-xs font-bold text-green-500 bg-green-500/10 px-3 py-1 rounded-full animate-pulse">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mr-1.5"></span>
+                            Available
+                        </span>
+                    )
                 )}
             </div>
 
@@ -31,9 +38,9 @@ const ConnectCard = ({ pricing, isOnline = true, onChat }) => {
                     </div>
                     <button
                         onClick={onChat}
-                        className="w-full py-3 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold rounded-xl transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-md flex items-center justify-center gap-2"
+                        className={`w-full py-3 ${isBusy ? 'bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20' : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md'} font-bold rounded-xl transition-transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2`}
                     >
-                        Start Chat
+                        {isBusy ? 'Join Waitlist' : 'Start Chat'}
                         <ChevronRight className="w-4 h-4 opacity-50" />
                     </button>
                 </div>
@@ -49,7 +56,10 @@ const ConnectCard = ({ pricing, isOnline = true, onChat }) => {
                             <span className="text-primary font-bold">₹{pricing.call.discounted}<span className="text-xs font-normal text-muted-foreground">/min</span></span>
                         </div>
                     </div>
-                    <button className="w-full py-3 bg-card border-2 border-primary/20 hover:border-primary/50 text-foreground font-bold rounded-xl transition-all hover:bg-muted/50 flex items-center justify-center gap-2">
+                    <button
+                        onClick={onCall}
+                        className="w-full py-3 bg-card border-2 border-primary/20 hover:border-primary/50 text-foreground font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:bg-muted/50 flex items-center justify-center gap-2"
+                    >
                         Start Call
                     </button>
                 </div>

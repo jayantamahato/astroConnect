@@ -1,6 +1,8 @@
+import React from 'react';
 import { X, Heart, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { AstrologerCard } from '../../features/astrologer/components/AstrologerCard';
+import { AstrologerCard } from '../cards/AstrologerCard';
+import { useConnection } from '../ConnectionProvider';
 
 /**
  * FavoriteAstrologersDrawer - A slide-in drawer showing favorite astrologers
@@ -11,6 +13,8 @@ import { AstrologerCard } from '../../features/astrologer/components/AstrologerC
  * @param {function} onRemove - Function to remove an astrologer from favorites
  */
 const FavoriteAstrologersDrawer = ({ isOpen, onClose, favorites = [], onRemove }) => {
+    const { startChat, startCall } = useConnection();
+
     // Mock data for demonstration (replace with actual data from props/state)
     const mockFavorites = [
         {
@@ -42,16 +46,6 @@ const FavoriteAstrologersDrawer = ({ isOpen, onClose, favorites = [], onRemove }
             experience: "10 Years Experience",
             price: "₹20/min",
             status: "offline"
-        },
-        {
-            id: 4,
-            name: "Pandit Krishnan",
-            skills: "Vastu Shastra, Gemology",
-            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
-            rating: 4.9,
-            experience: "20 Years Experience",
-            price: "₹35/min",
-            status: "online"
         }
     ];
 
@@ -60,7 +54,7 @@ const FavoriteAstrologersDrawer = ({ isOpen, onClose, favorites = [], onRemove }
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex justify-end">
+        <div className="fixed inset-0 z-[110] flex justify-end">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -93,7 +87,7 @@ const FavoriteAstrologersDrawer = ({ isOpen, onClose, favorites = [], onRemove }
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-hide">
                     {displayFavorites.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-center py-12">
                             <div className="p-4 bg-muted rounded-full mb-4">
@@ -116,20 +110,30 @@ const FavoriteAstrologersDrawer = ({ isOpen, onClose, favorites = [], onRemove }
                     ) : (
                         displayFavorites.map((astro) => (
                             <div key={astro.id} className="relative group">
-                                {/* Remove Button - positioned at top right */}
+                                {/* Remove Button */}
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         onRemove && onRemove(astro.id);
                                     }}
-                                    className="absolute top-2 right-2 z-10 p-2 bg-card/90 backdrop-blur-sm border border-border rounded-full text-muted-foreground hover:text-destructive hover:bg-destructive/10 hover:border-destructive/30 transition-all opacity-0 group-hover:opacity-100"
+                                    className="absolute top-2 right-2 z-20 p-2 bg-card/90 backdrop-blur-sm border border-border rounded-full text-muted-foreground hover:text-destructive hover:bg-destructive/10 hover:border-destructive/30 transition-all opacity-0 group-hover:opacity-100"
                                     title="Remove from favorites"
                                 >
                                     <Trash2 className="w-4 h-4" />
                                 </button>
 
                                 {/* Astrologer Card */}
-                                <AstrologerCard astro={astro} />
+                                <AstrologerCard
+                                    astro={astro}
+                                    onChat={() => {
+                                        startChat(astro);
+                                        onClose();
+                                    }}
+                                    onCall={() => {
+                                        startCall(astro);
+                                        onClose();
+                                    }}
+                                />
                             </div>
                         ))
                     )}
